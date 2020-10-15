@@ -1,0 +1,25 @@
+*{
+    margin:0;
+    padding:0;
+}
+//变量，数组，函数，宏定义（混合器）建议大家放到公共的样式
+$fontsize : 18px;//声明变量
+// $fontsize :18px !default;//设置默认
+$lineheight:1.5;
+$borderDir : bottom;
+
+@mixin size($width : 100px,$height:100px){
+    width : $width;
+    height : $height;
+}
+@mixin position($position:relative,$left:0,$right:0,$top:0,$bottom:0){
+    position: $position;
+    left:$left;
+    right:$right;
+    top:$top;
+    bottom:$bottom;
+}
+$map :(aaa:black,bbb:yellow,ccc:red);
+@function fnColor($key){
+    @return map-get($map,$key);
+}

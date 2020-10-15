@@ -1,0 +1,121 @@
+// 导入公共样式
+@import 'public';
+
+#box{
+    width:400px;
+    height:600px;
+    margin:auto;
+    position:relative;
+    border:1px solid black;
+    .top{
+       width:400px;
+       height:400px;
+       position:absolute;
+       border:1px solid green;
+       .mark_l {
+           width:200px;
+           height:400px;
+           position:absolute;
+           top:0;
+           left:0;
+           z-index:1;
+           opacity:0;
+       }
+       .mark_r {
+        width:200px;
+        height:400px;
+        position:absolute;
+        top:0;
+        right:0;
+        z-index:1;
+        opacity:0;
+        background:pink;
+        //&:#box .top .mark_r 
+        #div &{
+            background :gray;
+        }
+       }
+    }
+}
+
+nav a{
+    color:red;
+    /* &代表从当前所在的位置开始的所有祖先选择器  nav a*/
+    header &{
+        color:green;
+    }
+  }
+
+//   #top_nav_li{
+//       border-style:solid;
+//       border-left-width:4px;
+//       border-left-color:#888;
+//   }
+  #top_nav_li{
+      border : {
+          style : solid;
+          left : {
+              width:4px;
+              color:#888;
+          }
+          right:{
+              width:2px;
+              color:#cccccc;
+          }
+      }
+  }
+  /*
+  页面字符统一设置为18像素   （会一起编译）
+  */
+  body{
+      font-size :$fontsize;  //变量的一般调用（以值得方式调用，只有自己能看，只有在scss中可以使用）
+  }
+  #pox{
+      font:#{$fontsize} / #{$lineheight};//变量的特殊调用（以属性的方式）
+  }
+  $borderDir : top;
+  #pox1{
+      border-#{ $borderDir}:1px solid gray;
+    //   @include size;
+    @include size(100%,200px);
+  }
+  #pox2{
+      @include size(800px,600px);
+      @include position(absolute,200px);
+  }
+  #box2{
+      @extend #pox2;
+      background:red;
+  }
+
+$hehe : ccc;
+body{
+    @if $hehe == aaa{
+        background-color:black;
+    }@else if $hehe == bbb{
+        background-color:yellow;
+    }
+}
+
+$colNum :4;
+@for $i from 1 through $colNum{
+    col-#{$i}{
+        width:100% / $colNum * $i;
+    }
+}
+$rolNum :4;
+@for $j from 1 to $colNum{
+    rol-#{$j}{
+        width:100% / $rolNum * $j;
+    }
+}
+$colors : success error warning ;
+@each $k in $colors{
+    i-#{$k}{
+        background-image:url(img/i/#{$k}.jpg);
+    }
+}
+
+.list{
+    background-color:fnColor(ccc);
+}
